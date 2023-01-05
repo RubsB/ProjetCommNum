@@ -60,8 +60,8 @@ all: main-build
 main-build: NUCLEO-G474RE-AEI_Base_TP.elf secondary-outputs
 
 # Tool invocations
-NUCLEO-G474RE-AEI_Base_TP.elf NUCLEO-G474RE-AEI_Base_TP.map: $(OBJS) $(USER_OBJS) C:\Users\Guillaume\Documents\Cours\ ENSEA\COURS\ AEI\TP_com_num\ProjetCommNum\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "NUCLEO-G474RE-AEI_Base_TP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Guillaume\Documents\Cours ENSEA\COURS AEI\TP_com_num\ProjetCommNum\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="NUCLEO-G474RE-AEI_Base_TP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+NUCLEO-G474RE-AEI_Base_TP.elf NUCLEO-G474RE-AEI_Base_TP.map: $(OBJS) $(USER_OBJS) E:\Documents\Projet_CommNum\ProjetCommNum\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "NUCLEO-G474RE-AEI_Base_TP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\Documents\Projet_CommNum\ProjetCommNum\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="NUCLEO-G474RE-AEI_Base_TP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -1,0 +1,48 @@
+\hypertarget{tim_8c}{}\doxysection{tim.\+c File Reference}
+\label{tim_8c}\index{tim.c@{tim.c}}
+
+
+This file provides code for the configuration of the TIM instances.  
+
+
+{\ttfamily \#include \char`\"{}tim.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tim_8c_ad1f9d42690163f73f73e5b820c81ca14}\label{tim_8c_ad1f9d42690163f73f73e5b820c81ca14}} 
+void {\bfseries MX\+\_\+\+TIM1\+\_\+\+Init} (void)
+\item 
+\mbox{\Hypertarget{tim_8c_a59716af159bfbbb6023b31354fb23af8}\label{tim_8c_a59716af159bfbbb6023b31354fb23af8}} 
+void {\bfseries HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+Init} (TIM\+\_\+\+Handle\+Type\+Def $\ast$tim\+\_\+base\+Handle)
+\item 
+void \mbox{\hyperlink{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}{HAL\+\_\+\+TIM\+\_\+\+Msp\+Post\+Init}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$tim\+Handle)
+\item 
+\mbox{\Hypertarget{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}\label{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}} 
+void {\bfseries HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+De\+Init} (TIM\+\_\+\+Handle\+Type\+Def $\ast$tim\+\_\+base\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tim_8c_a25fc663547539bc49fecc0011bd76ab5}\label{tim_8c_a25fc663547539bc49fecc0011bd76ab5}} 
+TIM\+\_\+\+Handle\+Type\+Def {\bfseries htim1}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the TIM instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}\label{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}} 
+\index{tim.c@{tim.c}!HAL\_TIM\_MspPostInit@{HAL\_TIM\_MspPostInit}}
+\index{HAL\_TIM\_MspPostInit@{HAL\_TIM\_MspPostInit}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_MspPostInit()}{HAL\_TIM\_MspPostInit()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+TIM\+\_\+\+Msp\+Post\+Init (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{tim\+Handle }\end{DoxyParamCaption})}
+
+TIM1 GPIO Configuration PA8 -\/-\/-\/---\texorpdfstring{$>$}{>} TIM1\+\_\+\+CH1 PA9 -\/-\/-\/---\texorpdfstring{$>$}{>} TIM1\+\_\+\+CH2 PA11 -\/-\/-\/---\texorpdfstring{$>$}{>} TIM1\+\_\+\+CH1N PA12 -\/-\/-\/---\texorpdfstring{$>$}{>} TIM1\+\_\+\+CH2N

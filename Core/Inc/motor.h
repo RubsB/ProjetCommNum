@@ -12,7 +12,8 @@
 
 void motorPowerOn(void);
 void motorPowerOff(void);
-void motorSetSpeed(int speed);
+void motorSetSpeed(int);
+void setdutycycle(int);
 
 
 #endif /* INC_MOTOR_H_ */

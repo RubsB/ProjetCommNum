@@ -1,0 +1,80 @@
+\hypertarget{usart_8c}{}\doxysection{usart.\+c File Reference}
+\label{usart_8c}\index{usart.c@{usart.c}}
+
+
+This file provides code for the configuration of the USART instances.  
+
+
+{\ttfamily \#include \char`\"{}usart.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{usart_8c_ae494a9643f29b87d6d81e5264e60e57b}{HAL\+\_\+\+UART\+\_\+\+Rx\+Cplt\+Callback}} (UART\+\_\+\+Handle\+Type\+Def $\ast$huart)
+\begin{DoxyCompactList}\small\item\em Function called at each new character received. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{usart_8c_a052088fe5bb3f807a4b2502e664fd4fd}\label{usart_8c_a052088fe5bb3f807a4b2502e664fd4fd}} 
+void {\bfseries MX\+\_\+\+USART2\+\_\+\+UART\+\_\+\+Init} (void)
+\item 
+void \mbox{\hyperlink{usart_8c_a62a25476866998c7aadfb5c0864fa349}{HAL\+\_\+\+UART\+\_\+\+Msp\+Init}} (UART\+\_\+\+Handle\+Type\+Def $\ast$uart\+Handle)
+\item 
+void \mbox{\hyperlink{usart_8c_a94cd2c58add4f2549895a03bf267622e}{HAL\+\_\+\+UART\+\_\+\+Msp\+De\+Init}} (UART\+\_\+\+Handle\+Type\+Def $\ast$uart\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{usart_8c_a9f01ffb72325e6328a2239d6de7f4abc}\label{usart_8c_a9f01ffb72325e6328a2239d6de7f4abc}} 
+uint8\+\_\+t {\bfseries uart\+Rx\+Received}
+\item 
+\mbox{\Hypertarget{usart_8c_a2542ac6d4440b9e1c4a6435c55c79df3}\label{usart_8c_a2542ac6d4440b9e1c4a6435c55c79df3}} 
+uint8\+\_\+t {\bfseries uart\+Rx\+Buffer} \mbox{[}UART\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}
+\item 
+\mbox{\Hypertarget{usart_8c_a3f98e2db2fa0d8f0cfd87b887576207f}\label{usart_8c_a3f98e2db2fa0d8f0cfd87b887576207f}} 
+uint8\+\_\+t {\bfseries uart\+Tx\+Buffer} \mbox{[}UART\+\_\+\+TX\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}
+\item 
+\mbox{\Hypertarget{usart_8c_a8c4373ebb19a7d1e6c4a05948c5ad7ca}\label{usart_8c_a8c4373ebb19a7d1e6c4a05948c5ad7ca}} 
+uint8\+\_\+t {\bfseries string\+Size}
+\item 
+\mbox{\Hypertarget{usart_8c_aa9479c261d65eecedd3d9582f7f0f89c}\label{usart_8c_aa9479c261d65eecedd3d9582f7f0f89c}} 
+UART\+\_\+\+Handle\+Type\+Def {\bfseries huart2}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the USART instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{usart_8c_a94cd2c58add4f2549895a03bf267622e}\label{usart_8c_a94cd2c58add4f2549895a03bf267622e}} 
+\index{usart.c@{usart.c}!HAL\_UART\_MspDeInit@{HAL\_UART\_MspDeInit}}
+\index{HAL\_UART\_MspDeInit@{HAL\_UART\_MspDeInit}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_UART\_MspDeInit()}{HAL\_UART\_MspDeInit()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+UART\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def $\ast$}]{uart\+Handle }\end{DoxyParamCaption})}
+
+USART2 GPIO Configuration PA2 -\/-\/-\/---\texorpdfstring{$>$}{>} USART2\+\_\+\+TX PA3 -\/-\/-\/---\texorpdfstring{$>$}{>} USART2\+\_\+\+RX\mbox{\Hypertarget{usart_8c_a62a25476866998c7aadfb5c0864fa349}\label{usart_8c_a62a25476866998c7aadfb5c0864fa349}} 
+\index{usart.c@{usart.c}!HAL\_UART\_MspInit@{HAL\_UART\_MspInit}}
+\index{HAL\_UART\_MspInit@{HAL\_UART\_MspInit}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_UART\_MspInit()}{HAL\_UART\_MspInit()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+UART\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def $\ast$}]{uart\+Handle }\end{DoxyParamCaption})}
+
+Initializes the peripherals clocks
+
+USART2 GPIO Configuration PA2 -\/-\/-\/---\texorpdfstring{$>$}{>} USART2\+\_\+\+TX PA3 -\/-\/-\/---\texorpdfstring{$>$}{>} USART2\+\_\+\+RX\mbox{\Hypertarget{usart_8c_ae494a9643f29b87d6d81e5264e60e57b}\label{usart_8c_ae494a9643f29b87d6d81e5264e60e57b}} 
+\index{usart.c@{usart.c}!HAL\_UART\_RxCpltCallback@{HAL\_UART\_RxCpltCallback}}
+\index{HAL\_UART\_RxCpltCallback@{HAL\_UART\_RxCpltCallback}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_UART\_RxCpltCallback()}{HAL\_UART\_RxCpltCallback()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+UART\+\_\+\+Rx\+Cplt\+Callback (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def $\ast$}]{huart }\end{DoxyParamCaption})}
+
+
+
+Function called at each new character received. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}

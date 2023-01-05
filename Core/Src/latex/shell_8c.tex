@@ -1,0 +1,218 @@
+\hypertarget{shell_8c}{}\doxysection{shell.\+c File Reference}
+\label{shell_8c}\index{shell.c@{shell.c}}
+
+
+This file provides code for motor control.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}shell.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}usart.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}motor.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{shell_8c_a0b1dba28bb03cb29749f32a595d5ec57}{shell\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Send a stating message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{shell_8c_ada1fc6498d1ec098fa318eee2b7ffa94}{shell\+Prompt}} (void)
+\begin{DoxyCompactList}\small\item\em Send the prompt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{shell_8c_a59617fdf3fc02c4aef64cda60e211a03}{shell\+Cmd\+Not\+Found}} (void)
+\begin{DoxyCompactList}\small\item\em Send the default message if the command is not found. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{shell_8c_a7a96f7f058476af11368abd36a81e54c}{shell\+Get\+Char}} (void)
+\begin{DoxyCompactList}\small\item\em Function called for saving the new character and call and setup argc and argv variable if ENTER is pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{shell_8c_a964a5edb50369b7040478d2d2061bf08}{shell\+Exec}} (void)
+\begin{DoxyCompactList}\small\item\em Call function depends of the value of argc and argv. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{shell_8c_a966d2a4355220cea45d1606e814d7340}\label{shell_8c_a966d2a4355220cea45d1606e814d7340}} 
+const uint8\+\_\+t {\bfseries prompt} \mbox{[}$\,$\mbox{]} =\char`\"{}user@Nucleo-\/STM32\+G4\+RB31$>$$>$\char`\"{}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{shell_8c_a755cb53f91881bf4852a1765ffc09dd6}{started}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\Hypertarget{shell_8c_adf1738871b36e02674442e11e9b0ec62}\label{shell_8c_adf1738871b36e02674442e11e9b0ec62}} 
+const uint8\+\_\+t {\bfseries newline} \mbox{[}$\,$\mbox{]} =\char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{shell_8c_a3369aa142a6ea1e89e677006836ee2ff}{help}} \mbox{[}$\,$\mbox{]}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{shell_8c_ac88f7e9fb5c08068a71fdf0108918291}{pinout}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\Hypertarget{shell_8c_aaf2189933bda013fb3c72e886dc5a3d2}\label{shell_8c_aaf2189933bda013fb3c72e886dc5a3d2}} 
+const uint8\+\_\+t {\bfseries power\+On} \mbox{[}$\,$\mbox{]} =\char`\"{}Switch on motor control\textbackslash{}r\textbackslash{}n\char`\"{}
+\item 
+\mbox{\Hypertarget{shell_8c_aeb39f657e7d4109c7d352e6ad376228a}\label{shell_8c_aeb39f657e7d4109c7d352e6ad376228a}} 
+const uint8\+\_\+t {\bfseries power\+Off} \mbox{[}$\,$\mbox{]} =\char`\"{}Switch off motor control\textbackslash{}r\textbackslash{}n\char`\"{}
+\item 
+\mbox{\Hypertarget{shell_8c_a8fdb729a6b519ccbc7256fc219133f54}\label{shell_8c_a8fdb729a6b519ccbc7256fc219133f54}} 
+const uint8\+\_\+t {\bfseries motor\+Speed\+Inst} \mbox{[}$\,$\mbox{]} =\char`\"{}Enter a motor speed such as \textbackslash{}\char`\"{}set speed $<$int$>$\textbackslash{}\char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}
+\item 
+\mbox{\Hypertarget{shell_8c_afffb9f0c7259f40748797ec408c8becb}\label{shell_8c_afffb9f0c7259f40748797ec408c8becb}} 
+const uint8\+\_\+t {\bfseries cmd\+Not\+Found} \mbox{[}$\,$\mbox{]} =\char`\"{}Command not found\textbackslash{}r\textbackslash{}n\char`\"{}
+\item 
+\mbox{\Hypertarget{shell_8c_a755c320507955b333af8919b434c80dd}\label{shell_8c_a755c320507955b333af8919b434c80dd}} 
+char {\bfseries cmd\+Buffer} \mbox{[}CMD\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}
+\item 
+\mbox{\Hypertarget{shell_8c_a2542ac6d4440b9e1c4a6435c55c79df3}\label{shell_8c_a2542ac6d4440b9e1c4a6435c55c79df3}} 
+uint8\+\_\+t {\bfseries uart\+Rx\+Buffer} \mbox{[}UART\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}
+\item 
+\mbox{\Hypertarget{shell_8c_abe9e65d1e29b3e163a4ee56a6ed159e4}\label{shell_8c_abe9e65d1e29b3e163a4ee56a6ed159e4}} 
+uint8\+\_\+t {\bfseries idx\+Cmd}
+\item 
+\mbox{\Hypertarget{shell_8c_a097621c7310da407a3cc4a6ae4568c56}\label{shell_8c_a097621c7310da407a3cc4a6ae4568c56}} 
+char $\ast$ {\bfseries argv} \mbox{[}MAX\+\_\+\+ARGS\mbox{]}
+\item 
+\mbox{\Hypertarget{shell_8c_a63b6d24f14e2388410f01e3d2aa21f9d}\label{shell_8c_a63b6d24f14e2388410f01e3d2aa21f9d}} 
+uint8\+\_\+t {\bfseries argc}
+\item 
+\mbox{\Hypertarget{shell_8c_a3f98e2db2fa0d8f0cfd87b887576207f}\label{shell_8c_a3f98e2db2fa0d8f0cfd87b887576207f}} 
+uint8\+\_\+t {\bfseries uart\+Tx\+Buffer} \mbox{[}UART\+\_\+\+TX\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}
+\item 
+\mbox{\Hypertarget{shell_8c_a8c4373ebb19a7d1e6c4a05948c5ad7ca}\label{shell_8c_a8c4373ebb19a7d1e6c4a05948c5ad7ca}} 
+uint8\+\_\+t {\bfseries string\+Size}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for motor control. 
+
+This file provides code for shell interface.
+
+Created on\+: Nov 7, 2022 Author\+: nicolas 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{shell_8c_a59617fdf3fc02c4aef64cda60e211a03}\label{shell_8c_a59617fdf3fc02c4aef64cda60e211a03}} 
+\index{shell.c@{shell.c}!shellCmdNotFound@{shellCmdNotFound}}
+\index{shellCmdNotFound@{shellCmdNotFound}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{shellCmdNotFound()}{shellCmdNotFound()}}
+{\footnotesize\ttfamily void shell\+Cmd\+Not\+Found (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Send the default message if the command is not found. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{shell_8c_a964a5edb50369b7040478d2d2061bf08}\label{shell_8c_a964a5edb50369b7040478d2d2061bf08}} 
+\index{shell.c@{shell.c}!shellExec@{shellExec}}
+\index{shellExec@{shellExec}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{shellExec()}{shellExec()}}
+{\footnotesize\ttfamily void shell\+Exec (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Call function depends of the value of argc and argv. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{shell_8c_a7a96f7f058476af11368abd36a81e54c}\label{shell_8c_a7a96f7f058476af11368abd36a81e54c}} 
+\index{shell.c@{shell.c}!shellGetChar@{shellGetChar}}
+\index{shellGetChar@{shellGetChar}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{shellGetChar()}{shellGetChar()}}
+{\footnotesize\ttfamily uint8\+\_\+t shell\+Get\+Char (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function called for saving the new character and call and setup argc and argv variable if ENTER is pressed. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & if a new command is available, 0 if not. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{shell_8c_a0b1dba28bb03cb29749f32a595d5ec57}\label{shell_8c_a0b1dba28bb03cb29749f32a595d5ec57}} 
+\index{shell.c@{shell.c}!shellInit@{shellInit}}
+\index{shellInit@{shellInit}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{shellInit()}{shellInit()}}
+{\footnotesize\ttfamily void shell\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Send a stating message. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{shell_8c_ada1fc6498d1ec098fa318eee2b7ffa94}\label{shell_8c_ada1fc6498d1ec098fa318eee2b7ffa94}} 
+\index{shell.c@{shell.c}!shellPrompt@{shellPrompt}}
+\index{shellPrompt@{shellPrompt}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{shellPrompt()}{shellPrompt()}}
+{\footnotesize\ttfamily void shell\+Prompt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Send the prompt. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{shell_8c_a3369aa142a6ea1e89e677006836ee2ff}\label{shell_8c_a3369aa142a6ea1e89e677006836ee2ff}} 
+\index{shell.c@{shell.c}!help@{help}}
+\index{help@{help}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{help}{help}}
+{\footnotesize\ttfamily const uint8\+\_\+t help\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n| Functions available           |"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}help : print this message\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}pinout : print all pins used\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}powerOn : switch on the motor control driver\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}powerOff : switch on the motor control driver\(\backslash\)r\(\backslash\)n"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{shell_8c_ac88f7e9fb5c08068a71fdf0108918291}\label{shell_8c_ac88f7e9fb5c08068a71fdf0108918291}} 
+\index{shell.c@{shell.c}!pinout@{pinout}}
+\index{pinout@{pinout}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{pinout}{pinout}}
+{\footnotesize\ttfamily const uint8\+\_\+t pinout\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n| Pinout used                   |"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PC13 : blue button\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PC3 : ISO\_RESET\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PA2 : USART2\_TX\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PA3 : USART2\_RX\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PA5 : LED\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PA8 : TIM1\_CH1\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PA9 : TIM1\_CH2\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PA11 : TIM1\_CH1N\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}PA12 : TIM1\_CH2N\(\backslash\)r\(\backslash\)n"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{shell_8c_a755cb53f91881bf4852a1765ffc09dd6}\label{shell_8c_a755cb53f91881bf4852a1765ffc09dd6}} 
+\index{shell.c@{shell.c}!started@{started}}
+\index{started@{started}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{started}{started}}
+{\footnotesize\ttfamily const uint8\+\_\+t started\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n| Welcome on Nucleo-\/STM32G431RB |"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
+
+\end{DoxyCode}

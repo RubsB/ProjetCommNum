@@ -1,0 +1,38 @@
+\hypertarget{shell_8h_source}{}\doxysection{shell.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * shell.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Created on: Nov 7, 2022}}
+\DoxyCodeLine{5 \textcolor{comment}{ *      Author: nicolas}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef INC\_SHELL\_H\_}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define INC\_SHELL\_H\_}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define CMD\_BUFFER\_SIZE 64}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define MAX\_ARGS 9}}
+\DoxyCodeLine{15 \textcolor{comment}{// LF = line feed, saut de ligne}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define ASCII\_LF 0x0A}}
+\DoxyCodeLine{17 \textcolor{comment}{// CR = carriage return, retour chariot}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define ASCII\_CR 0x0D}}
+\DoxyCodeLine{19 \textcolor{comment}{// DEL = delete}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define ASCII\_DEL 0x7F}}
+\DoxyCodeLine{21 \textcolor{comment}{// BS = backspace}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define ASCII\_BS 0x08}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keywordtype}{void} shellInit(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{27 \textcolor{keywordtype}{void} shellCompute(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{28 \textcolor{keywordtype}{void} shellPrompt(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{29 \textcolor{keywordtype}{void} shellCmdNotFound(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{30 uint8\_t shellGetChar(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{31 \textcolor{keywordtype}{void} shellExec(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_SHELL\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

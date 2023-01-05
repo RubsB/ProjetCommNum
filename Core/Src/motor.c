@@ -13,10 +13,16 @@
 
 /**
   * @brief  Switch on the motor driver
+  * @note Activates the chopper's reset signal, situated on its 33rd pin
   * @retval None
   */
 void motorPowerOn(void){
-	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); // just for test, you can delete it
+	HAL_GPIO_WritePin(ISO_RESET_GPIO_Port, ISO_RESET_Pin, GPIO_PIN_SET);
+	int i;
+	for (i=0;i<30; i++)
+	{
+	}
+	HAL_GPIO_WritePin(ISO_RESET_GPIO_Port, ISO_RESET_Pin, GPIO_PIN_RESET);
 }
 
 /**
@@ -25,6 +31,16 @@ void motorPowerOn(void){
   */
 void motorPowerOff(void){
 	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); // just for test, you can delete it
+}
+/**
+ * @brief Set the PWM duty cycle
+ * @param alpha
+ */
+void setdutycycle(int alpha)
+{
+	if (alpha)
+	TIM1->CCR1=(alpha*5312)/100;
+	TIM1->CCR2=5311-(alpha*5312)/100;
 }
 
 /**

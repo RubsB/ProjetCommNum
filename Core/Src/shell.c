@@ -50,6 +50,7 @@ const uint8_t powerOn[]="Switch on motor control\r\n";
 const uint8_t powerOff[]="Switch off motor control\r\n";
 const uint8_t motorSpeedInst[]="Enter a motor speed such as \"set speed <int>\"\r\n";
 const uint8_t cmdNotFound[]="Command not found\r\n";
+const uint8_t alpha[]="Set dutycycle\r\n";
 
 char cmdBuffer[CMD_BUFFER_SIZE];
 extern uint8_t 	uartRxBuffer[UART_RX_BUFFER_SIZE];
@@ -164,6 +165,12 @@ void shellExec(void){
 		HAL_UART_Transmit(&huart2, powerOff, sizeof(powerOff), HAL_MAX_DELAY);
 		motorPowerOff();
 	}
+	else if((strcmp(argv[0],"alpha")==0))
+	{
+		HAL_UART_Transmit(&huart2, alpha, sizeof(alpha), HAL_MAX_DELAY);
+		setdutycycle(atoi(argv[1]));
+	}
+
 	else{
 		shellCmdNotFound();
 	}
