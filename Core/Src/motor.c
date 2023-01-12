@@ -38,7 +38,9 @@ void motorPowerOff(void){
  */
 void setdutycycle(int alpha)
 {
-	if (alpha)
+		if (alpha < 0 || alpha > 100){
+			        return;
+		}
 	TIM1->CCR1=(alpha*5312)/100;
 	TIM1->CCR2=5311-(alpha*5312)/100;
 }

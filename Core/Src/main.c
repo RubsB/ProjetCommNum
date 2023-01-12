@@ -18,6 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
+#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -65,7 +67,11 @@ const uint8_t cmdNotFound[] ;// contenant le message du commande non reconnue
 extern uint8_t uartRxReceived;//: flag de récéption d'un caractère sur la liaison uart
 extern uint8_t uartRxBuffer[UART_RX_BUFFER_SIZE];// : buffer de réception de donnée de l'uart
 extern uint8_t uartTxBuffer[UART_TX_BUFFER_SIZE];// : buffer d'émission des données de l'uart
+float amperage;
 
+ADC_HandleTypeDef hadc;
+DMA_HandleTypeDef hdma;
+uint16_t adc_values[10];
 
 
 /* USER CODE END PV */
@@ -110,8 +116,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_TIM1_Init();
   MX_USART2_UART_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_UART_Receive_IT(&huart2, uartRxBuffer, UART_RX_BUFFER_SIZE);
 	HAL_Delay(1);
@@ -120,6 +128,13 @@ int main(void)
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+	HAL_ADC_Init(&hadc);
+	HAL_DMA_Init(&hdma);
+
+	HAL_ADC_Start_DMA(&hadc, adc_values, 10);
+
+
+
 	//HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_N_STATE_GET(&htim1,TIM_CHANNEL_1));
 	//HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_N_STATE_GET(&htim1,TIM_CHANNEL_2));
 	//HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_N);

@@ -59,8 +59,14 @@ char* argv[MAX_ARGS];
 uint8_t	argc;
 extern uint8_t uartTxBuffer[UART_TX_BUFFER_SIZE];
 extern uint8_t stringSize;
+float extern amperage;
+char chaine[30];
 
-
+double mesure_moyenne;
+double mesure_voltage;
+float Imoyen;
+extern uint16_t adc_values[10];
+uint16_t sum;
 
 /**
   * @brief  Send a stating message
@@ -170,6 +176,24 @@ void shellExec(void){
 		HAL_UART_Transmit(&huart2, alpha, sizeof(alpha), HAL_MAX_DELAY);
 		setdutycycle(atoi(argv[1]));
 	}
+	else if((strcmp(argv[0],"mesure")==0))
+		{
+
+		for(int i=0; i<10;i++){
+			sum=sum+adc_values[i];
+		}
+
+		mesure_moyenne = sum/10;
+		mesure_voltage =((double)mesure_moyenne*3.3)/4096.0;
+		Imoyen =(mesure_voltage-2.5)*12;
+
+		printf(chaine,"le courant vaut %f \r\n",Imoyen);
+		HAL_UART_Transmit(&huart2, chaine,  sizeof(chaine),HAL_MAX_DELAY);
+
+		//HAL_UART_Transmit(&huart2, amperage, sizeof(amperage), HAL_MAX_DELAY);
+		sum = 0;
+		}
+
 
 	else{
 		shellCmdNotFound();
