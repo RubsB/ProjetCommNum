@@ -187,7 +187,7 @@ void shellExec(void){
 		mesure_voltage =((double)mesure_moyenne*3.3)/4096.0;
 		Imoyen =(mesure_voltage-2.5)*12;
 
-		printf(chaine,"le courant vaut %f \r\n",Imoyen);
+		printf(chaine," Courant = %f A \r\n",Imoyen);
 		HAL_UART_Transmit(&huart2, chaine,  sizeof(chaine),HAL_MAX_DELAY);
 
 		//HAL_UART_Transmit(&huart2, amperage, sizeof(amperage), HAL_MAX_DELAY);

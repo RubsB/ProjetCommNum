@@ -122,17 +122,17 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_UART_Receive_IT(&huart2, uartRxBuffer, UART_RX_BUFFER_SIZE);
-	HAL_Delay(1);
+
 	shellInit();
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+
 	HAL_ADC_Init(&hadc);
 	HAL_DMA_Init(&hdma);
-
 	HAL_ADC_Start_DMA(&hadc, adc_values, 10);
-
+	HAL_Delay(1);
 
 
 	//HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_N_STATE_GET(&htim1,TIM_CHANNEL_1));
