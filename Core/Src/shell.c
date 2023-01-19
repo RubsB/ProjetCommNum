@@ -51,6 +51,8 @@ const uint8_t powerOff[]="Switch off motor control\r\n";
 const uint8_t motorSpeedInst[]="Enter a motor speed such as \"set speed <int>\"\r\n";
 const uint8_t cmdNotFound[]="Command not found\r\n";
 const uint8_t alpha[]="Set dutycycle\r\n";
+const uint8_t mesure[]="oui\r\n";
+
 
 char cmdBuffer[CMD_BUFFER_SIZE];
 extern uint8_t 	uartRxBuffer[UART_RX_BUFFER_SIZE];
@@ -176,9 +178,12 @@ void shellExec(void){
 		HAL_UART_Transmit(&huart2, alpha, sizeof(alpha), HAL_MAX_DELAY);
 		setdutycycle(atoi(argv[1]));
 	}
+
+
 	else if((strcmp(argv[0],"mesure")==0))
 		{
-
+		sum = 0;
+		HAL_UART_Transmit(&huart2, mesure, sizeof(mesure), HAL_MAX_DELAY);
 		for(int i=0; i<10;i++){
 			sum=sum+adc_values[i];
 		}
@@ -187,11 +192,13 @@ void shellExec(void){
 		mesure_voltage =((double)mesure_moyenne*3.3)/4096.0;
 		Imoyen =(mesure_voltage-2.5)*12;
 
-		printf(chaine," Courant = %f A \r\n",Imoyen);
+		sprintf(chaine," Courant = %.3f A \r\n",Imoyen);
+
 		HAL_UART_Transmit(&huart2, chaine,  sizeof(chaine),HAL_MAX_DELAY);
 
+
 		//HAL_UART_Transmit(&huart2, amperage, sizeof(amperage), HAL_MAX_DELAY);
-		sum = 0;
+
 		}
 
 

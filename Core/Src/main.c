@@ -69,8 +69,6 @@ extern uint8_t uartRxBuffer[UART_RX_BUFFER_SIZE];// : buffer de réception de do
 extern uint8_t uartTxBuffer[UART_TX_BUFFER_SIZE];// : buffer d'émission des données de l'uart
 float amperage;
 
-ADC_HandleTypeDef hadc;
-DMA_HandleTypeDef hdma;
 uint16_t adc_values[10];
 
 
@@ -120,6 +118,7 @@ int main(void)
   MX_TIM1_Init();
   MX_USART2_UART_Init();
   MX_ADC1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 	HAL_UART_Receive_IT(&huart2, uartRxBuffer, UART_RX_BUFFER_SIZE);
 
@@ -129,10 +128,12 @@ int main(void)
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
 
-	HAL_ADC_Init(&hadc);
-	HAL_DMA_Init(&hdma);
-	HAL_ADC_Start_DMA(&hadc, adc_values, 10);
+
+	//HAL_ADC_Init(&hadc);
+	//HAL_DMA_Init(&hdma);
+	HAL_ADC_Start_DMA(&hadc1, adc_values, 10);
 	HAL_Delay(1);
+	HAL_TIM_Base_Start(&htim2);
 
 
 	//HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_N_STATE_GET(&htim1,TIM_CHANNEL_1));

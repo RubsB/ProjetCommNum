@@ -17,6 +17,7 @@
   * @retval None
   */
 void motorPowerOn(void){
+	setdutycycle(50);
 	HAL_GPIO_WritePin(ISO_RESET_GPIO_Port, ISO_RESET_Pin, GPIO_PIN_SET);
 	int i;
 	for (i=0;i<30; i++)
