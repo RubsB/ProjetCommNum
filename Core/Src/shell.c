@@ -52,7 +52,7 @@ const uint8_t motorSpeedInst[]="Enter a motor speed such as \"set speed <int>\"\
 const uint8_t cmdNotFound[]="Command not found\r\n";
 const uint8_t alpha[]="Set dutycycle\r\n";
 const uint8_t mesure[]="oui\r\n";
-
+const uint8_t vitesse[]="vitesse \r\n";
 
 char cmdBuffer[CMD_BUFFER_SIZE];
 extern uint8_t 	uartRxBuffer[UART_RX_BUFFER_SIZE];
@@ -63,11 +63,12 @@ extern uint8_t uartTxBuffer[UART_TX_BUFFER_SIZE];
 extern uint8_t stringSize;
 float extern amperage;
 char chaine[30];
-
+char chainevitesse[30];
 double mesure_moyenne;
 double mesure_voltage;
 float Imoyen;
 extern uint16_t adc_values[10];
+extern uint16_t Speed;
 uint16_t sum;
 
 /**
@@ -200,6 +201,23 @@ void shellExec(void){
 		//HAL_UART_Transmit(&huart2, amperage, sizeof(amperage), HAL_MAX_DELAY);
 
 		}
+
+
+
+	else if((strcmp(argv[0],"vitesse")==0))
+			{
+
+			motorSpeed();
+
+
+			HAL_UART_Transmit(&huart2, vitesse, sizeof(vitesse), HAL_MAX_DELAY);
+			sprintf(chainevitesse," la vitesse est  = %d  tour/min \n \r\n",Speed);
+
+			HAL_UART_Transmit(&huart2, chainevitesse, sizeof(chainevitesse),HAL_MAX_DELAY);
+
+
+			}
+
 
 
 	else{

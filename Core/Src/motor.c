@@ -10,7 +10,8 @@
   */
 
 #include "motor.h"
-
+extern uint16_t Speed;
+extern uint16_t codeurValue;
 /**
   * @brief  Switch on the motor driver
   * @note Activates the chopper's reset signal, situated on its 33rd pin
@@ -53,4 +54,8 @@ void setdutycycle(int alpha)
   */
 void motorSetSpeed(int speed){
 	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); // just for test, you can delete it
+}
+
+void  motorSpeed(void){
+	Speed=(codeurValue-((TIM3->ARR)/2.0))*10*60.0/4096;
 }

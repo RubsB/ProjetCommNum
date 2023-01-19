@@ -68,8 +68,9 @@ extern uint8_t uartRxReceived;//: flag de récéption d'un caractère sur la lia
 extern uint8_t uartRxBuffer[UART_RX_BUFFER_SIZE];// : buffer de réception de donnée de l'uart
 extern uint8_t uartTxBuffer[UART_TX_BUFFER_SIZE];// : buffer d'émission des données de l'uart
 float amperage;
-
-uint16_t adc_values[10];
+uint16_t codeurValue;
+uint16_t Speed;
+int16_t adc_values[10];
 
 
 /* USER CODE END PV */
@@ -119,6 +120,8 @@ int main(void)
   MX_USART2_UART_Init();
   MX_ADC1_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
 	HAL_UART_Receive_IT(&huart2, uartRxBuffer, UART_RX_BUFFER_SIZE);
 
@@ -134,6 +137,10 @@ int main(void)
 	HAL_ADC_Start_DMA(&hadc1, adc_values, 10);
 	HAL_Delay(1);
 	HAL_TIM_Base_Start(&htim2);
+
+	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+	TIM3->CNT = TIM3->ARR/2;
+	HAL_TIM_Base_Start_IT(&htim5);
 
 
 	//HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_N_STATE_GET(&htim1,TIM_CHANNEL_1));
@@ -227,7 +234,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+  else if (htim->Instance == TIM5){
+  		codeurValue= TIM3->CNT;
+  		TIM3->CNT = TIM3->ARR/2;}
   /* USER CODE END Callback 1 */
 }
 

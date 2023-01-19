@@ -1,4 +1,5 @@
-../Core/Src/motor.c:19:6:motorPowerOn	16	static
-../Core/Src/motor.c:33:6:motorPowerOff	8	static
-../Core/Src/motor.c:40:6:setdutycycle	16	static
-../Core/Src/motor.c:54:6:motorSetSpeed	16	static
+../Core/Src/motor.c:20:6:motorPowerOn	16	static
+../Core/Src/motor.c:34:6:motorPowerOff	8	static
+../Core/Src/motor.c:41:6:setdutycycle	16	static
+../Core/Src/motor.c:55:6:motorSetSpeed	16	static
+../Core/Src/motor.c:59:7:motorSpeed	16	static
