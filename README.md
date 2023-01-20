@@ -38,6 +38,7 @@ Afin d'éviter que tous les transistors ne conduisent pas en même temps, on int
 Nous vérifions notre code sur l'oscilloscope:
 
 ##### Mesures sur l'oscilloscope
+
 ![Mesures sur l'oscilloscope](./Images/Oscillo.jpg "Mesures sur l'oscilloscope")
 
 On vérifie que la fréquence, le temps mort et les rapports cycliques sont corrects. 
@@ -49,6 +50,7 @@ Sur l'écran on aperçoit aussi une impulsion de 2 us qui correspond à la comma
 Pour reset le hacheur et ses capteurs, il faut lui envoyer une impulsion d'au moins 2 us sur le pin ISO_RESET.
 On le réalise avec la fonction motorPowerOn:
 ##### motorPowerOn
+
 ![motorPowerOn](./Images/PowerOn.jpg "motorPowerOn")
 La fonction consiste à mettre le pin ISO_RESET à 1 puis faire une boucle for de 31 itérations ce qui correspond à 2us, à la fin de cette dernière, on remet le pin à 0, cette technique est facile à mettre en oeuvre mais est peu précise.
 Comme nous sommes en commande complémentaire décalée, nous imposons la valeur de alpha à 50 au démarrage pour que je moteur ne se mette pas à touner directement.  
@@ -89,7 +91,9 @@ Cela permet de gagner en précision car le courant du le moteur comporte de trè
 
 ## Paramètres ADC
 ![image](https://user-images.githubusercontent.com/95105604/213761400-3d1ee0f3-c482-4abe-ba07-a9a61c1a92a9.png)
+
 ![image](https://user-images.githubusercontent.com/95105604/213761623-f954938f-742d-4f99-8d66-6b274e397f25.png)
+
 On va donc lancer 1 conversion  sur chaque front montant du timer 2, le timer 2 étant mis à 160 kHz, la PWM 16 kHz, on a donc 10 mesures par l'ADC sur une période de PWM.
 
 "HAL_ADC_Start_DMA(&hadc1, adc_values, 10);" permet de lancer l'adc avec le DMA et stoacker 10 valeurs mesurées dans le tableau adc_Values.
@@ -98,9 +102,13 @@ Ces deux lignes sont utilisées à l'initiation.
 
 Le DMA est en mode circular, c'est à dire qu'il recharge des nouvelles mesures dans le tableau en permanence.
 Cela permet de lire en temps réel le courant.
+
 ![image](https://user-images.githubusercontent.com/95105604/213771031-6ebc5fa6-4967-4e15-975a-1fb0ab59871e.png)
+
 Enfin, quand l'utilisateur tape "mesure" le courant dans le terminal , on fait la moyenne des mesures des courant et on l'affiche sur le terminal. 
+
 ![image](https://user-images.githubusercontent.com/95105604/213771772-60a8e297-c2cb-4db7-b753-79144b46015b.png)
+
 Cette moyenne est stockée dans un chaine de caractères par la fonction sprintf pour être affichée "sprintf(chaine," Courant = %.3f A \r\n",Imoyen);"
 
 
@@ -113,14 +121,17 @@ Nous utilisons le Timer3 en mode counter pour compter les incréments sur les ro
 
 Le TIM3 doit être initialiser à son point milieu pour éviter que la vitesse fasse un bond si le moteur passe en marche arrière ce qui ferai passer le compteur de 0 a 65535.
 Enfin le Timer 3 doit être utilisé en encoder avec le mode "ENCODER MODE TI1 and TI2".
+
 ![image](https://user-images.githubusercontent.com/95105604/213774872-b39d6b85-4a54-431f-b661-0e705f9fdb12.png)
 
 
 Dans un premier temps on traite l'interruption envoyée par TIM5, nous utlisons pour cela la fonction HAL_TIM_PeriodElapsedCallBack:
 On remet la valeur de TIM3 à son point milieu pour la prochaine mesure. 
+
 ![image](https://user-images.githubusercontent.com/95105604/213775390-39d176f2-e9cb-4f03-97e7-889e28b9b56e.png)
 
 La vitesse est calculée via la fonction motorSpeed.
+
 ![image](https://user-images.githubusercontent.com/95105604/213781146-b18bf264-4135-4a44-8970-2271e8ee82e6.png)
 
 Cette dernière est appelée quand l'utilisateur rentre "vitesse" dans l'invite de commande.
