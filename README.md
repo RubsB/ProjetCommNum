@@ -140,6 +140,9 @@ Cette dernière est appelée quand l'utilisateur rentre "vitesse" dans l'invite 
 
 Les résultats obenue sont concluants, quand on a 700 tour/sc renvoyé sur le shell on a une tension de 7V sur la tachy du moteur.
 
+Pour l'asservissement en courant, la méthodologie utilisé est une régulation PI. 
+Nous n'avons pas réussi à mettre en place la partie asservissement.
+
 
 ## Annexe
 Pinout du connecteur Sub-D 37: (Les pins indiqués sur la carte sont faux)
